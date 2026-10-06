@@ -1,0 +1,30 @@
+test_counts_by_hand (test_models.TestFirstOrderCPT.test_counts_by_hand) ... ok
+test_end_is_never_a_context (test_models.TestFirstOrderCPT.test_end_is_never_a_context) ... ok
+test_joint_distribution_sums_to_one_over_short_sentences (test_models.TestFirstOrderCPT.test_joint_distribution_sums_to_one_over_short_sentences)
+The model defines a proper distribution over sentences: summing ... ok
+test_probabilities_by_hand (test_models.TestFirstOrderCPT.test_probabilities_by_hand) ... ok
+test_sentence_probability_chain_rule (test_models.TestFirstOrderCPT.test_sentence_probability_chain_rule) ... ok
+test_unseen_word_has_no_distribution (test_models.TestFirstOrderCPT.test_unseen_word_has_no_distribution) ... ok
+test_zero_probability_transition (test_models.TestFirstOrderCPT.test_zero_probability_transition) ... ok
+test_detects_a_buggy_implementation (test_models.TestNormalisation.test_detects_a_buggy_implementation)
+Negative control: a typical bug (add-one smoothing applied to the ... ok
+test_first_order_rows_sum_to_one (test_models.TestNormalisation.test_first_order_rows_sum_to_one) ... ok
+test_second_order_rows_sum_to_one (test_models.TestNormalisation.test_second_order_rows_sum_to_one) ... ok
+test_first_order_greedy_never_reaches_end (test_models.TestSampling.test_first_order_greedy_never_reaches_end)
+the -> cat -> sat -> on -> the ... is a cycle of argmax choices. ... ok
+test_greedy_is_deterministic (test_models.TestSampling.test_greedy_is_deterministic) ... ok
+test_sampled_sentences_terminate_and_are_valid (test_models.TestSampling.test_sampled_sentences_terminate_and_are_valid) ... ok
+test_sampling_frequencies_match_cpt (test_models.TestSampling.test_sampling_frequencies_match_cpt) ... ok
+test_distribution_over_sentences_is_exactly_the_training_set (test_models.TestSecondOrder.test_distribution_over_sentences_is_exactly_the_training_set)
+With this tiny dataset the trigram model puts all its probability ... ok
+test_greedy_terminates (test_models.TestSecondOrder.test_greedy_terminates) ... ok
+test_sentence_probability (test_models.TestSecondOrder.test_sentence_probability) ... ok
+test_triple_counts_by_hand (test_models.TestSecondOrder.test_triple_counts_by_hand) ... ok
+test_two_tokens_of_context_are_used (test_models.TestSecondOrder.test_two_tokens_of_context_are_used)
+First-order: P(.|the) is one distribution.  Second-order: it depends ... ok
+test_unseen_context (test_models.TestSecondOrder.test_unseen_context) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 5.063s
+
+OK

@@ -1,0 +1,31 @@
+First-order model:  sum_v P(v | w)
+  <START>    1.000000
+  the        1.000000
+  cat        1.000000
+  sat        1.000000
+  on         1.000000
+  mat        1.000000
+  rug        1.000000
+  dog        1.000000
+  ran        1.000000
+  to         1.000000
+  park       1.000000
+
+Second-order model:  sum_v P(v | u, w)
+  (<START>, <START>)    1.000000
+  (<START>, the)        1.000000
+  (the, cat)            1.000000
+  (cat, sat)            1.000000
+  (sat, on)             1.000000
+  (on, the)             1.000000
+  (the, mat)            1.000000
+  (the, rug)            1.000000
+  (the, dog)            1.000000
+  (dog, sat)            1.000000
+  (dog, ran)            1.000000
+  (ran, to)             1.000000
+  (to, the)             1.000000
+  (the, park)           1.000000
+  (cat, ran)            1.000000
+
+All rows sum to 1: True
