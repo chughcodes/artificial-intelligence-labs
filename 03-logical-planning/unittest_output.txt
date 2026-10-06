@@ -1,0 +1,26 @@
+test_every_state_transition_is_consistent (test_planner.TestA_Solvable.test_every_state_transition_is_consistent) ... ok
+test_no_shorter_plan_exists (test_planner.TestA_Solvable.test_no_shorter_plan_exists)
+Brute force: no sequence of 1-3 actions achieves the goal. ... ok
+test_plan_found_valid_and_shortest (test_planner.TestA_Solvable.test_plan_found_valid_and_shortest) ... ok
+test_no_pickup_no_plan (test_planner.TestB_Impossible.test_no_pickup_no_plan) ... ok
+test_unreachable_location_no_plan (test_planner.TestB_Impossible.test_unreachable_location_no_plan) ... ok
+test_irrelevant_actions_do_not_fool_planner (test_planner.TestC_IrrelevantActions.test_irrelevant_actions_do_not_fool_planner) ... ok
+test_robot_only_plan_rejected (test_planner.TestC_IrrelevantActions.test_robot_only_plan_rejected) ... ok
+test_robot_starts_at_c (test_planner.TestC_IrrelevantActions.test_robot_starts_at_c) ... ok
+test_goal_already_true_gives_empty_plan (test_planner.TestHandPlans.test_goal_already_true_gives_empty_plan) ... ok
+test_hand_constructed_plan_is_valid (test_planner.TestHandPlans.test_hand_constructed_plan_is_valid) ... ok
+test_sheet_example_sequence_is_invalid (test_planner.TestHandPlans.test_sheet_example_sequence_is_invalid) ... ok
+test_apply_refuses_inapplicable_action (test_planner.TestLogic.test_apply_refuses_inapplicable_action) ... ok
+test_apply_removes_then_adds (test_planner.TestLogic.test_apply_removes_then_adds) ... ok
+test_delete_before_add (test_planner.TestLogic.test_delete_before_add) ... ok
+test_drop_at_c_not_applicable_initially (test_planner.TestLogic.test_drop_at_c_not_applicable_initially) ... ok
+test_goal_not_satisfied_by_robot_at_c (test_planner.TestLogic.test_goal_not_satisfied_by_robot_at_c) ... ok
+test_negative_precondition (test_planner.TestLogic.test_negative_precondition) ... ok
+test_no_direct_move_a_to_c (test_planner.TestLogic.test_no_direct_move_a_to_c) ... ok
+test_only_two_actions_applicable_initially (test_planner.TestLogic.test_only_two_actions_applicable_initially) ... ok
+test_pickup_applicable_initially (test_planner.TestLogic.test_pickup_applicable_initially) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.003s
+
+OK

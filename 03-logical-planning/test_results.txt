@@ -1,0 +1,121 @@
+========================================================================
+Test A - solvable: original warehouse problem
+========================================================================
+Initial state : {At(Package,A), At(Robot,A)}
+Goal          : {At(Package,C)}
+Actions       : Move(A,B), Move(B,A), Move(B,C), Move(C,B), PickUp(Package,A), PickUp(Package,B), PickUp(Package,C), Drop(Package,A), Drop(Package,B), Drop(Package,C)
+
+Plan found: 4 actions  (states expanded: 6)
+  S0: {At(Package,A), At(Robot,A)}
+  PickUp(Package,A)      -> S1: {At(Robot,A), Holding(Package)}
+  Move(A,B)              -> S2: {At(Robot,B), Holding(Package)}
+  Move(B,C)              -> S3: {At(Robot,C), Holding(Package)}
+  Drop(Package,C)        -> S4: {At(Package,C), At(Robot,C)}
+
+Independent check of every action:
+  Step 1: PickUp(Package,A): preconditions [At(Package,A), At(Robot,A)] hold -> {At(Robot,A), Holding(Package)}
+  Step 2: Move(A,B): preconditions [At(Robot,A)] hold -> {At(Robot,B), Holding(Package)}
+  Step 3: Move(B,C): preconditions [At(Robot,B)] hold -> {At(Robot,C), Holding(Package)}
+  Step 4: Drop(Package,C): preconditions [At(Robot,C), Holding(Package)] hold -> {At(Package,C), At(Robot,C)}
+  Goal SATISFIED in final state {At(Package,C), At(Robot,C)}
+Plan valid: True 
+
+========================================================================
+Test B - impossible: PickUp actions removed
+========================================================================
+Initial state : {At(Package,A), At(Robot,A)}
+Goal          : {At(Package,C)}
+Actions       : Move(A,B), Move(B,A), Move(B,C), Move(C,B), Drop(Package,A), Drop(Package,B), Drop(Package,C)
+
+No plan found  (states expanded: 3)
+
+========================================================================
+Test B2 - impossible: link B-C removed (C unreachable)
+========================================================================
+Initial state : {At(Package,A), At(Robot,A)}
+Goal          : {At(Package,C)}
+Actions       : Move(A,B), Move(B,A), PickUp(Package,A), PickUp(Package,B), PickUp(Package,C), Drop(Package,A), Drop(Package,B), Drop(Package,C)
+
+No plan found  (states expanded: 6)
+
+========================================================================
+Test C - irrelevant actions added (robot-only moves, Recharge, Scan)
+========================================================================
+Initial state : {At(Package,A), At(Robot,A)}
+Goal          : {At(Package,C)}
+Actions       : Move(A,B), Move(B,A), Move(B,C), Move(C,B), PickUp(Package,A), PickUp(Package,B), PickUp(Package,C), Drop(Package,A), Drop(Package,B), Drop(Package,C), Recharge(A), Scan(C), Shuttle(A,C)
+
+Plan found: 4 actions  (states expanded: 11)
+  S0: {At(Package,A), At(Robot,A)}
+  PickUp(Package,A)      -> S1: {At(Robot,A), Holding(Package)}
+  Move(A,B)              -> S2: {At(Robot,B), Holding(Package)}
+  Move(B,C)              -> S3: {At(Robot,C), Holding(Package)}
+  Drop(Package,C)        -> S4: {At(Package,C), At(Robot,C)}
+
+Independent check of every action:
+  Step 1: PickUp(Package,A): preconditions [At(Package,A), At(Robot,A)] hold -> {At(Robot,A), Holding(Package)}
+  Step 2: Move(A,B): preconditions [At(Robot,A)] hold -> {At(Robot,B), Holding(Package)}
+  Step 3: Move(B,C): preconditions [At(Robot,B)] hold -> {At(Robot,C), Holding(Package)}
+  Step 4: Drop(Package,C): preconditions [At(Robot,C), Holding(Package)] hold -> {At(Package,C), At(Robot,C)}
+  Goal SATISFIED in final state {At(Package,C), At(Robot,C)}
+Plan valid: True 
+
+========================================================================
+Test C2 - robot already at C, package still at A
+========================================================================
+Initial state : {At(Package,A), At(Robot,C)}
+Goal          : {At(Package,C)}
+Actions       : Move(A,B), Move(B,A), Move(B,C), Move(C,B), PickUp(Package,A), PickUp(Package,B), PickUp(Package,C), Drop(Package,A), Drop(Package,B), Drop(Package,C)
+
+Plan found: 6 actions  (states expanded: 6)
+  S0: {At(Package,A), At(Robot,C)}
+  Move(C,B)              -> S1: {At(Package,A), At(Robot,B)}
+  Move(B,A)              -> S2: {At(Package,A), At(Robot,A)}
+  PickUp(Package,A)      -> S3: {At(Robot,A), Holding(Package)}
+  Move(A,B)              -> S4: {At(Robot,B), Holding(Package)}
+  Move(B,C)              -> S5: {At(Robot,C), Holding(Package)}
+  Drop(Package,C)        -> S6: {At(Package,C), At(Robot,C)}
+
+Independent check of every action:
+  Step 1: Move(C,B): preconditions [At(Robot,C)] hold -> {At(Package,A), At(Robot,B)}
+  Step 2: Move(B,A): preconditions [At(Robot,B)] hold -> {At(Package,A), At(Robot,A)}
+  Step 3: PickUp(Package,A): preconditions [At(Package,A), At(Robot,A)] hold -> {At(Robot,A), Holding(Package)}
+  Step 4: Move(A,B): preconditions [At(Robot,A)] hold -> {At(Robot,B), Holding(Package)}
+  Step 5: Move(B,C): preconditions [At(Robot,B)] hold -> {At(Robot,C), Holding(Package)}
+  Step 6: Drop(Package,C): preconditions [At(Robot,C), Holding(Package)] hold -> {At(Package,C), At(Robot,C)}
+  Goal SATISFIED in final state {At(Package,C), At(Robot,C)}
+Plan valid: True 
+
+========================================================================
+Check: example sequence from the sheet  Move(A,B), PickUp(Package,B), Move(B,C), Drop(Package,C)
+========================================================================
+  Step 1: Move(A,B): preconditions [At(Robot,A)] hold -> {At(Package,A), At(Robot,B)}
+  Step 2: PickUp(Package,B) NOT applicable: At(Package,B) is false
+Plan valid: False 
+
+========================================================================
+Check: hand-constructed plan (Task 1)
+========================================================================
+  Step 1: PickUp(Package,A): preconditions [At(Package,A), At(Robot,A)] hold -> {At(Robot,A), Holding(Package)}
+  Step 2: Move(A,B): preconditions [At(Robot,A)] hold -> {At(Robot,B), Holding(Package)}
+  Step 3: Move(B,C): preconditions [At(Robot,B)] hold -> {At(Robot,C), Holding(Package)}
+  Step 4: Drop(Package,C): preconditions [At(Robot,C), Holding(Package)] hold -> {At(Package,C), At(Robot,C)}
+  Goal SATISFIED in final state {At(Package,C), At(Robot,C)}
+Plan valid: True 
+
+========================================================================
+Check: robot-only plan  Move(A,B), Move(B,C)
+========================================================================
+  Step 1: Move(A,B): preconditions [At(Robot,A)] hold -> {At(Package,A), At(Robot,B)}
+  Step 2: Move(B,C): preconditions [At(Robot,B)] hold -> {At(Package,A), At(Robot,C)}
+  Goal NOT satisfied in final state {At(Package,A), At(Robot,C)}
+Plan valid: False 
+
+========================================================================
+SUMMARY
+========================================================================
+Test A | {At(Package,A), At(Robot,A)} | {At(Package,C)} | yes | PickUp(Package,A), Move(A,B), Move(B,C), Drop(Package,C) | yes
+Test B | {At(Package,A), At(Robot,A)} | {At(Package,C)} | no (No plan found) | - | n/a
+Test B2 | {At(Package,A), At(Robot,A)} | {At(Package,C)} | no (No plan found) | - | n/a
+Test C | {At(Package,A), At(Robot,A)} | {At(Package,C)} | yes | PickUp(Package,A), Move(A,B), Move(B,C), Drop(Package,C) | yes
+Test C2 | {At(Package,A), At(Robot,C)} | {At(Package,C)} | yes | Move(C,B), Move(B,A), PickUp(Package,A), Move(A,B), Move(B,C), Drop(Package,C) | yes
