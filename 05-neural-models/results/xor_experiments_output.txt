@@ -1,0 +1,197 @@
+==========================================================================
+TASK 1 CHECK - models without a hidden nonlinearity
+==========================================================================
+(a) single affine layer + sigmoid output
+    initial loss 0.7168  final loss 0.6931  (ln 2 = 0.6931)  correct 2/4
+    x=[0, 0]  P(y=1)=0.5000  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 0]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 1]  P(y=1)=0.5000  label=0  target=0  ok
+(b) 2-2-1 network with identity hidden activation (affine depth only)
+    initial loss 0.7078  final loss 0.6931  correct 2/4
+    x=[0, 0]  P(y=1)=0.5000  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 0]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 1]  P(y=1)=0.5000  label=0  target=0  ok
+
+==========================================================================
+PART A - 2-2-1 tanh network, seed 0, Adam lr=0.05, 3000 steps
+==========================================================================
+    initial loss 0.7152
+    final loss   0.000083
+    loss at step    0: 0.715159
+    loss at step  100: 0.028135
+    loss at step  250: 0.005678
+    loss at step  500: 0.001940
+    loss at step 1000: 0.000638
+    loss at step 2000: 0.000189
+    loss at step 2999: 0.000083
+    x=[0, 0]  P(y=1)=0.0001  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.9999  label=1  target=1  ok
+    x=[1, 0]  P(y=1)=0.9999  label=1  target=1  ok
+    x=[1, 1]  P(y=1)=0.0001  label=0  target=0  ok
+    all four correct: True
+
+==========================================================================
+PART B - backpropagation check (fresh tanh network, before training)
+==========================================================================
+    W1 =
+ tensor([[-0.005294,  0.379323],
+        [-0.581981, -0.520387]])
+    dL/dW1 from loss.backward() (W1.grad):
+ tensor([[ 0.000505,  0.000607],
+        [-0.042569, -0.044773]])
+    dL/dW1 from hand-derived backprop:
+ tensor([[ 0.000505,  0.000607],
+        [-0.042569, -0.044773]])
+    dL/dW1 from central finite differences (float64):
+ tensor([[ 0.000505,  0.000607],
+        [-0.042569, -0.044773]])
+    per-example gradient for x=[0, 0]:
+ tensor([[-0., -0.],
+        [0., 0.]])
+    per-example gradient for x=[0, 1]:
+ tensor([[ 0.000000,  0.007764],
+        [-0.000000, -0.282230]])
+    per-example gradient for x=[1, 0]:
+ tensor([[ 0.007357,  0.000000],
+        [-0.273415, -0.000000]])
+    per-example gradient for x=[1, 1]:
+ tensor([[-0.005336, -0.005336],
+        [ 0.103139,  0.103139]])
+    mean of the four per-example gradients:
+ tensor([[ 0.000505,  0.000607],
+        [-0.042569, -0.044773]])
+    max |difference| autograd vs hand-derived          : 0.00e+00
+    max |difference| autograd vs finite differences    : 7.45e-09
+    max |difference| autograd vs mean of per-example   : 0.00e+00
+
+==========================================================================
+PART C - symmetry experiment: all weights and biases set to zero
+==========================================================================
+
+  hidden activation = sigmoid
+    step    0: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step    1: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step    2: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step    5: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step   10: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step  100: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step 1000: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step 3000: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    final W2 = [[0.0, 0.0]]
+    final loss 0.6931, correct 2/4
+    x=[0, 0]  P(y=1)=0.5000  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 0]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 1]  P(y=1)=0.5000  label=0  target=0  ok
+
+  hidden activation = tanh
+    step    0: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step    1: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step    2: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step    5: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step   10: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step  100: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step 1000: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    step 3000: row1 = [0.0, 0.0]  row2 = [0.0, 0.0]  identical: True
+    final W2 = [[0.0, 0.0]]
+    final loss 0.6931, correct 2/4
+    x=[0, 0]  P(y=1)=0.5000  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 0]  P(y=1)=0.5000  label=0  target=1  WRONG
+    x=[1, 1]  P(y=1)=0.5000  label=0  target=0  ok
+
+  control: every weight and bias = 0.3 (non-zero but identical), sigmoid
+    step    0: row1 = [0.3, 0.3]  row2 = [0.3, 0.3]  identical: True
+    step    1: row1 = [0.25, 0.25]  row2 = [0.25, 0.25]  identical: True
+    step    2: row1 = [0.201, 0.201]  row2 = [0.201, 0.201]  identical: True
+    step    5: row1 = [0.0701, 0.0701]  row2 = [0.0701, 0.0701]  identical: True
+    step   10: row1 = [-0.0713, -0.0713]  row2 = [-0.0713, -0.0713]  identical: True
+    step  100: row1 = [-4.777, -4.777]  row2 = [-4.777, -4.777]  identical: True
+    step 1000: row1 = [-10.9046, -10.9046]  row2 = [-10.9046, -10.9046]  identical: True
+    step 3000: row1 = [-13.3861, -13.3861]  row2 = [-13.3861, -13.3861]  identical: True
+    final W2 = [-5.889, -5.889]
+    final loss 0.4774, correct 3/4
+    x=[0, 0]  P(y=1)=0.0001  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.6666  label=1  target=1  ok
+    x=[1, 0]  P(y=1)=0.6666  label=1  target=1  ok
+    x=[1, 1]  P(y=1)=0.6667  label=1  target=0  WRONG
+
+  gradients at the all-zero initialisation (sigmoid hidden layer):
+    d L / d 0.weight  = [0.0, 0.0, 0.0, 0.0]
+    d L / d 0.bias    = [0.0, 0.0]
+    d L / d 2.weight  = [0.0, 0.0]
+    d L / d 2.bias    = [0.0]
+
+==========================================================================
+PART D - activation experiment (same random initialisation, seed 0)
+==========================================================================
+
+  sigmoid: hidden units BEFORE training
+    sigmoid: pre-activations a (rows = inputs, cols = hidden units)
+      x=[0, 0]  a=[-0.272, 0.19]  h=[0.432, 0.547]  f'(a)=[0.2454, 0.2478]
+      x=[0, 1]  a=[0.107, -0.331]  h=[0.527, 0.418]  f'(a)=[0.2493, 0.2433]
+      x=[1, 0]  a=[-0.278, -0.392]  h=[0.431, 0.403]  f'(a)=[0.2452, 0.2406]
+      x=[1, 1]  a=[0.102, -0.913]  h=[0.525, 0.286]  f'(a)=[0.2494, 0.2044]
+
+  sigmoid: initial loss 0.6977  final loss 0.477423  correct 3/4  ||dL/dW1|| at step 0 = 0.0009
+    x=[0, 0]  P(y=1)=0.0000  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.6666  label=1  target=1  ok
+    x=[1, 0]  P(y=1)=0.6666  label=1  target=1  ok
+    x=[1, 1]  P(y=1)=0.6667  label=1  target=0  WRONG
+  sigmoid: hidden units AFTER training
+    sigmoid: pre-activations a (rows = inputs, cols = hidden units)
+      x=[0, 0]  a=[0.918, -2.036]  h=[0.715, 0.115]  f'(a)=[0.2039, 0.1021]
+      x=[0, 1]  a=[-11.182, 11.833]  h=[0.0, 1.0]  f'(a)=[0.0, 0.0]
+      x=[1, 0]  a=[-11.094, 11.873]  h=[0.0, 1.0]  f'(a)=[0.0, 0.0]
+      x=[1, 1]  a=[-23.195, 25.742]  h=[0.0, 1.0]  f'(a)=[0.0, 0.0]
+
+  tanh: hidden units BEFORE training
+    tanh: pre-activations a (rows = inputs, cols = hidden units)
+      x=[0, 0]  a=[-0.272, 0.19]  h=[-0.266, 0.187]  f'(a)=[0.9293, 0.9649]
+      x=[0, 1]  a=[0.107, -0.331]  h=[0.107, -0.319]  f'(a)=[0.9886, 0.8981]
+      x=[1, 0]  a=[-0.278, -0.392]  h=[-0.271, -0.373]  f'(a)=[0.9267, 0.8606]
+      x=[1, 1]  a=[0.102, -0.913]  h=[0.101, -0.722]  f'(a)=[0.9897, 0.4781]
+
+  tanh: initial loss 0.7152  final loss 0.000083  correct 4/4  ||dL/dW1|| at step 0 = 0.0618
+    x=[0, 0]  P(y=1)=0.0001  label=0  target=0  ok
+    x=[0, 1]  P(y=1)=0.9999  label=1  target=1  ok
+    x=[1, 0]  P(y=1)=0.9999  label=1  target=1  ok
+    x=[1, 1]  P(y=1)=0.0001  label=0  target=0  ok
+  tanh: hidden units AFTER training
+    tanh: pre-activations a (rows = inputs, cols = hidden units)
+      x=[0, 0]  a=[-2.487, -2.135]  h=[-0.986, -0.972]  f'(a)=[0.0273, 0.0544]
+      x=[0, 1]  a=[2.507, -7.064]  h=[0.987, -1.0]  f'(a)=[0.0262, 0.0]
+      x=[1, 0]  a=[-7.552, 2.421]  h=[-1.0, 0.984]  f'(a)=[0.0, 0.031]
+      x=[1, 1]  a=[-2.558, -2.507]  h=[-0.988, -0.987]  f'(a)=[0.0237, 0.0262]
+
+  relu: hidden units BEFORE training
+    relu: pre-activations a (rows = inputs, cols = hidden units)
+      x=[0, 0]  a=[-0.272, 0.19]  h=[0.0, 0.19]  f'(a)=[0.0, 1.0]
+      x=[0, 1]  a=[0.107, -0.331]  h=[0.107, 0.0]  f'(a)=[1.0, 0.0]
+      x=[1, 0]  a=[-0.278, -0.392]  h=[0.0, 0.0]  f'(a)=[0.0, 0.0]
+      x=[1, 1]  a=[0.102, -0.913]  h=[0.102, 0.0]  f'(a)=[1.0, 0.0]
+
+  relu: initial loss 0.7069  final loss 0.693147  correct 2/4  ||dL/dW1|| at step 0 = 0.0017
+    x=[0, 0]  P(y=1)=0.5000  label=1  target=0  WRONG
+    x=[0, 1]  P(y=1)=0.5000  label=1  target=1  ok
+    x=[1, 0]  P(y=1)=0.5000  label=1  target=1  ok
+    x=[1, 1]  P(y=1)=0.5000  label=1  target=0  WRONG
+  relu: hidden units AFTER training
+    relu: pre-activations a (rows = inputs, cols = hidden units)
+      x=[0, 0]  a=[-0.431, -0.401]  h=[0.0, 0.0]  f'(a)=[0.0, 0.0]
+      x=[0, 1]  a=[-0.211, -0.921]  h=[0.0, 0.0]  f'(a)=[0.0, 0.0]
+      x=[1, 0]  a=[-0.558, -0.983]  h=[0.0, 0.0]  f'(a)=[0.0, 0.0]
+      x=[1, 1]  a=[-0.337, -1.503]  h=[0.0, 0.0]  f'(a)=[0.0, 0.0]
+
+  Result table
+  activation   final loss   4/4?  early ||grad W1||
+  sigmoid        0.477423 no (3/4)             0.0009
+  tanh           0.000083    yes             0.0618
+  relu           0.693147 no (2/4)             0.0017
+
+  Repeated runs: 50 seeds per activation (same settings)
+    sigmoid  solved 23/50   early ||grad W1||: median 0.0055, mean 0.0085
+    tanh     solved 27/50   early ||grad W1||: median 0.0287, mean 0.0350
+    relu     solved 11/50   early ||grad W1||: median 0.0467, mean 0.0449

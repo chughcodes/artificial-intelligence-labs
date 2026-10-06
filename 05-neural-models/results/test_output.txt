@@ -1,0 +1,15 @@
+test_logit_gradient_is_p_minus_y (test_neural.TestThreeClass.test_logit_gradient_is_p_minus_y) ... ok
+test_output_shapes (test_neural.TestThreeClass.test_output_shapes) ... ok
+test_softmax_sums_to_one_and_is_shift_invariant (test_neural.TestThreeClass.test_softmax_sums_to_one_and_is_shift_invariant) ... ok
+test_three_class_model_learns (test_neural.TestThreeClass.test_three_class_model_learns) ... ok
+test_affine_only_models_cannot_fit_xor (test_neural.TestXOR.test_affine_only_models_cannot_fit_xor) ... ok
+test_backward_matches_hand_derivation_and_finite_differences (test_neural.TestXOR.test_backward_matches_hand_derivation_and_finite_differences) ... ok
+test_identical_initialisation_keeps_rows_identical (test_neural.TestXOR.test_identical_initialisation_keeps_rows_identical) ... ok
+test_mean_loss_gradient_is_mean_of_example_gradients (test_neural.TestXOR.test_mean_loss_gradient_is_mean_of_example_gradients) ... ok
+test_tanh_network_learns_xor (test_neural.TestXOR.test_tanh_network_learns_xor) ... ok
+test_zero_initialisation_gives_zero_gradient (test_neural.TestXOR.test_zero_initialisation_gives_zero_gradient) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 5.336s
+
+OK
