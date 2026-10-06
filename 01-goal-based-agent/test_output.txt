@@ -1,0 +1,15 @@
+test_agent_state_reaches_goal (test_warehouse_agent.TestWarehouseAgent.test_agent_state_reaches_goal) ... ok
+test_doubled_warehouse_still_solved (test_warehouse_agent.TestWarehouseAgent.test_doubled_warehouse_still_solved)
+'Think About It': a warehouse twice as large in each dimension. ... ok
+test_every_move_is_one_square (test_warehouse_agent.TestWarehouseAgent.test_every_move_is_one_square) ... ok
+test_no_path_reports_failure (test_warehouse_agent.TestWarehouseAgent.test_no_path_reports_failure) ... ok
+test_path_is_collision_free (test_warehouse_agent.TestWarehouseAgent.test_path_is_collision_free) ... ok
+test_path_is_shortest (test_warehouse_agent.TestWarehouseAgent.test_path_is_shortest) ... ok
+test_path_starts_at_S_and_ends_at_G (test_warehouse_agent.TestWarehouseAgent.test_path_starts_at_S_and_ends_at_G) ... ok
+test_start_and_goal_located (test_warehouse_agent.TestWarehouseAgent.test_start_and_goal_located) ... ok
+test_start_equals_goal_edge_case (test_warehouse_agent.TestWarehouseAgent.test_start_equals_goal_edge_case) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK
