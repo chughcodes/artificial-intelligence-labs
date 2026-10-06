@@ -1,0 +1,15 @@
+test_astar_finds_shortest_path (test_search_agent.Test1OriginalWarehouse.test_astar_finds_shortest_path) ... ok
+test_map_file_matches_lab_map (test_search_agent.Test1OriginalWarehouse.test_map_file_matches_lab_map) ... ok
+test_one_step_solution (test_search_agent.Test2Trivial.test_one_step_solution) ... ok
+test_goal_completely_walled_in (test_search_agent.Test3NoSolution.test_goal_completely_walled_in) ... ok
+test_reports_failure_and_terminates (test_search_agent.Test3NoSolution.test_reports_failure_and_terminates) ... ok
+test_many_equal_shortest_paths (test_search_agent.Test4AlternativePaths.test_many_equal_shortest_paths) ... ok
+test_two_routes_shortest_chosen (test_search_agent.Test4AlternativePaths.test_two_routes_shortest_chosen) ... ok
+test_manhattan_admissible_on_lab_map (test_search_agent.TestHeuristicProperties.test_manhattan_admissible_on_lab_map) ... ok
+test_manhattan_x2_not_admissible (test_search_agent.TestHeuristicProperties.test_manhattan_x2_not_admissible) ... ok
+test_random_maps (test_search_agent.TestRandomisedAgainstIndependentBFS.test_random_maps) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.099s
+
+OK
